@@ -12,15 +12,17 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["https://real-time-chat-app-tan-pi.vercel.app"],
-    methods: ["GET", "POST"]
+    origin: ["http://localhost:3000", "https://real-time-chat-app-tan-pi.vercel.app"],
+    methods: ["GET", "POST"],
+    credentials: true
   }
 });
 
 app.use(express.json());
 app.use(cors({
-  origin: "https://real-time-chat-app-tan-pi.vercel.app",
-  methods: ["GET", "POST"],
+  origin: ["http://localhost:3000", "https://real-time-chat-app-tan-pi.vercel.app"],
+  methods: ["GET", "POST", "PATCH", "DELETE"],
+  allowedHeaders: ["Content-Type"],
   credentials: true
 }));
 
