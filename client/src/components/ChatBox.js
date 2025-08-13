@@ -102,7 +102,7 @@ const ChatBox = ({ currentUserId, selectedUserId }) => {
 
   return (
     <div className="flex flex-col min-h-screen h-screen bg-gray-100 p-2 md:p-6">
-      <div className="flex items-center mb-2 md:mb-4 flex-wrap">
+      <div className="flex items-center  pb-4  flex-wrap border-b-2 border-neutral-300">
         <div className="text-xl md:text-2xl font-extrabold text-green-700">Inbox</div>
         {selectedUserName && (
           <div className="ml-2 md:ml-4 px-2 md:px-4 py-1 md:py-2 rounded-lg bg-green-100 text-green-700 font-bold text-base md:text-lg">
