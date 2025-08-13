@@ -15,7 +15,7 @@ const ChatBox = ({ currentUserId, selectedUserId }) => {
       return;
     }
     axios
-      .get(`http://localhost:5001/api/user/name`)
+      .get(`https://real-time-chat-app-c45p.vercel.app/api/user/name`)
       .then((res) => {
         const user = res.data.find((u) => u._id === selectedUserId);
         setSelectedUserName(user ? user.name : "");
@@ -30,7 +30,7 @@ const ChatBox = ({ currentUserId, selectedUserId }) => {
       return;
     }
     axios
-      .get(`http://localhost:5001/api/messages/${currentUserId}/${selectedUserId}`)
+      .get(`https://real-time-chat-app-c45p.vercel.app/api/messages/${currentUserId}/${selectedUserId}`)
       .then((res) => setMessages(res.data))
       .catch((err) => setMessages([]));
   }, [selectedUserId, currentUserId]);
@@ -51,7 +51,7 @@ const ChatBox = ({ currentUserId, selectedUserId }) => {
     socket.emit("send_message", messageData);
     // Save to DB as before
     try {
-      await axios.post(`http://localhost:5001/api/messages/box`, messageData);
+      await axios.post(`https://real-time-chat-app-c45p.vercel.app/api/messages/box`, messageData);
       setNewMessage("");
     } catch (err) {
       alert('Failed to send message.');
