@@ -37,7 +37,7 @@ const Home = () => {
       </nav>
 
       {/* Sidebar */}
-      <aside className={`fixed md:static top-0 left-0 h-full z-40 bg-green-600 border-r border-green-700 flex-shrink-0 flex flex-col w-64 md:w-72 transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}>
+        <aside className={`fixed md:static top-0 left-0 h-full md:h-screen z-40 bg-green-600 border-r border-green-700 flex-shrink-0 flex flex-col w-64 md:w-72 transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}>
         <div className="p-6 text-white text-2xl font-extrabold border-b border-green-700 hidden md:block">Chats</div>
         <UserList
           currentUserId={currentUserId}
