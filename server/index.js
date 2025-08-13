@@ -12,7 +12,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["https://real-time-chat-app-oxdi.vercel.app/"],
+    origin: ["https://real-time-chat-app-production-06a7.up.railway.app/"],
     methods: ["GET", "POST"]
   }
 });
