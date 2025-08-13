@@ -101,23 +101,23 @@ const ChatBox = ({ currentUserId, selectedUserId }) => {
   }, [messages, selectedUserId]);
 
   return (
-    <div className="flex flex-col h-screen bg-gray-100 p-6">
-      <div className="flex items-center mb-4">
-        <div className="text-2xl font-extrabold text-green-700">Inbox</div>
+    <div className="flex flex-col h-[100dvh] bg-gray-100 p-2 md:p-6">
+      <div className="flex items-center mb-2 md:mb-4 flex-wrap">
+        <div className="text-xl md:text-2xl font-extrabold text-green-700">Inbox</div>
         {selectedUserName && (
-          <div className="ml-4 px-4 py-2 rounded-lg bg-green-100 text-green-700 font-bold text-lg">
+          <div className="ml-2 md:ml-4 px-2 md:px-4 py-1 md:py-2 rounded-lg bg-green-100 text-green-700 font-bold text-base md:text-lg">
             {selectedUserName}
           </div>
         )}
       </div>
-      <div className="flex-1 overflow-y-auto space-y-2 pb-4 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+      <div className="flex-1 overflow-y-auto space-y-2 pb-2 md:pb-4 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         {selectedUserId ? (
           <>
             {messages.length > 0 ? (
               messages.map((msg) => (
                 <div
                   key={msg._id}
-                  className={`max-w-lg px-4 py-2 rounded-lg shadow text-base break-words ${
+                  className={`max-w-xs md:max-w-lg px-3 md:px-4 py-2 rounded-lg shadow text-sm md:text-base break-words ${
                     msg.sender === currentUserId
                       ? 'bg-green-500 text-white self-end ml-auto'
                       : 'bg-white text-green-900 self-start mr-auto border border-green-200'
@@ -138,7 +138,7 @@ const ChatBox = ({ currentUserId, selectedUserId }) => {
           <div className="text-green-700">Select a user to start chatting.</div>
         )}
       </div>
-      <div className="flex mt-2">
+      <form className="flex mt-2 gap-2 md:gap-0" onSubmit={e => { e.preventDefault(); sendMessage(); }}>
         <input
           type="text"
           value={newMessage}
@@ -150,15 +150,15 @@ const ChatBox = ({ currentUserId, selectedUserId }) => {
             }
           }}
           placeholder="Type a message..."
-          className="flex-1 px-4 py-2 rounded-l-lg bg-white text-green-900 border border-green-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+          className="flex-1 px-3 md:px-4 py-2 rounded-l-lg bg-white text-green-900 border border-green-300 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm md:text-base"
         />
         <button
-          onClick={sendMessage}
-          className="bg-green-600 text-white px-6 py-2 rounded-r-lg font-bold hover:bg-green-700 transition"
+          type="submit"
+          className="bg-green-600 text-white px-4 md:px-6 py-2 rounded-r-lg font-bold hover:bg-green-700 transition text-sm md:text-base"
         >
           Send
         </button>
-      </div>
+      </form>
     </div>
   );
 };
