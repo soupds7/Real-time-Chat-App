@@ -12,13 +12,17 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["https://real-time-chat-app-production-06a7.up.railway.app/"],
+    origin: ["https://real-time-chat-app-tan-pi.vercel.app/"],
     methods: ["GET", "POST"]
   }
 });
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "https://real-time-chat-app-tan-pi.vercel.app/",
+  methods: ["GET", "POST"],
+  credentials: true
+}));
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
