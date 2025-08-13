@@ -17,8 +17,8 @@ const Login = () => {
             // Expect result.data to be user object or error
             if(result.data && result.data._id){
                 localStorage.setItem("user", JSON.stringify(result.data));
-                alert('Login successful!');
-                navigate('/home');
+                // Auto-login: redirect immediately
+                navigate('/home', { replace: true });
             } else {
                 alert('Incorrect email or password! Please try again.');
             }
@@ -31,43 +31,36 @@ const Login = () => {
 
 
     return (
-        <div>
-            <div className="flex min-h-screen justify-center items-center text-center bg-neutral-300">
-                <div className="bg-white rounded-md p-6">
-                    <h2 className='mb-6 mt-3 text-2xl font-bold'>Login</h2>
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-3 text-start py-2">
-                            <label htmlFor="exampleInputEmail1" className="form-label m-2 mr-4 p-0.5">
-                                <strong>Email Id</strong>
-                            </label>
-                            <input 
-                                type="email" 
-                                placeholder="Enter Email"
-                                className="form-control p-1 rounded-sm" 
-                                id="exampleInputEmail1" 
-                                onChange={(event) => setEmail(event.target.value)}
-                                required
-                            /> 
-                        </div>
-                        <div className="mb-3 text-start">
-                            <label htmlFor="exampleInputPassword1" className="form-label m-2">
-                                <strong className=''>Password</strong>
-                            </label>
-                            <input 
-                                type="password" 
-                                placeholder="Enter Password"
-                                className="form-control p-1" 
-                                id="exampleInputPassword1" 
-                                onChange={(event) => setPassword(event.target.value)}
-                                required
-                            />
-                        </div>
-                        <button type="submit" className="btn btn-primary border-2 p-2 px-4 border-zinc-950 rounded-2xl bg-green-500 my-4 hover:bg-green-700">Login</button>
-                    </form>
-                    
-                    <p className='container my-4 text-slate-500'>Don't have an account? <Link to='/register' className="btn btn-secondary text-slate-700 hover:text-blue-600">Register</Link></p>
-                    
-                </div>
+        <div className="min-h-screen flex items-center justify-center bg-[#23272A] px-2">
+            <div className="w-full max-w-md bg-[#2C2F33] rounded-lg shadow-lg p-4 md:p-8 text-center">
+                <h2 className="mb-6 text-2xl md:text-3xl font-extrabold text-[#7289DA]">Login</h2>
+                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+                    <div className="text-left">
+                        <label htmlFor="email" className="block text-[#99AAB5] font-semibold mb-2">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter Email"
+                            className="w-full px-3 md:px-4 py-2 rounded bg-[#23272A] text-[#99AAB5] border border-[#7289DA] focus:outline-none focus:ring-2 focus:ring-[#7289DA] text-sm md:text-base"
+                            onChange={(event) => setEmail(event.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="text-left">
+                        <label htmlFor="password" className="block text-[#99AAB5] font-semibold mb-2">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter Password"
+                            className="w-full px-3 md:px-4 py-2 rounded bg-[#23272A] text-[#99AAB5] border border-[#7289DA] focus:outline-none focus:ring-2 focus:ring-[#7289DA] text-sm md:text-base"
+                            onChange={(event) => setPassword(event.target.value)}
+                            required
+                        />
+                    </div>
+                    <button type="submit" className="w-full py-2 rounded bg-[#7289DA] text-white font-bold hover:bg-[#5865F2] transition text-sm md:text-base">Login</button>
+                </form>
+                <p className="mt-6 text-[#99AAB5] text-sm md:text-base">Don't have an account?</p>
+                <Link to='/register' className="inline-block mt-2 px-4 py-2 rounded bg-[#7289DA] text-white font-bold hover:bg-[#5865F2] transition text-sm md:text-base">Register</Link>
             </div>
         </div>
     )
