@@ -36,3 +36,7 @@ yarn-error.log*
 .idea/
 *.sublime-workspace
 *.sublime-project
+
+
+server/node_modules/
+client/node_modules/
