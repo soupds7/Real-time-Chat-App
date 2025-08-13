@@ -14,7 +14,7 @@ const Register = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         
-        axios.post( 'http://localhost:5001/api/user/register', {name, email, password})
+        axios.post( 'https://real-time-chat-app-c45p.vercel.app/api/user/register', {name, email, password})
         .then(result => {
             console.log(result);
             if(result.data === "Already registered"){
