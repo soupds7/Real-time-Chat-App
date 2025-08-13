@@ -10,7 +10,7 @@ const UserList = ({ onSelectUser, currentUserId }) => {
 
   useEffect(() => {
     axios
-      .get('https://real-time-chat-app-c45p.vercel.app/api/user/name')
+      .get('https://real-time-chat-app-production-06a7.up.railway.app/api/user/name')
       .then((res) => setNames(res.data))
       .catch((err) => console.error("Fetch error:", err));
   }, []);
