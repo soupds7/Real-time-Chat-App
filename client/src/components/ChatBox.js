@@ -150,11 +150,11 @@ const ChatBox = ({ currentUserId, selectedUserId }) => {
             }
           }}
           placeholder="Type a message..."
-          className="flex-1 px-3 md:px-4 py-2 rounded-l-lg bg-white text-green-900 border border-green-300 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm md:text-base"
+          className="flex-1 px-3 md:px-4 py-4 rounded-l-lg bg-white text-green-900 border border-green-300 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm md:text-base"
         />
         <button
           type="submit"
-          className="bg-green-600 text-white px-4 md:px-6 py-2 rounded-r-lg font-bold hover:bg-green-700 transition text-sm md:text-base"
+          className="bg-green-600 text-white px-4 md:px-6 py-4 rounded-r-lg font-bold hover:bg-green-700 transition text-sm md:text-base"
         >
           Send
         </button>
