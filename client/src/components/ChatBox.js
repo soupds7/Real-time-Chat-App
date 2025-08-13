@@ -15,7 +15,7 @@ const ChatBox = ({ currentUserId, selectedUserId }) => {
       return;
     }
     axios
-      .get(`https://real-time-chat-app-c45p.vercel.app/api/user/name`)
+      .get(`https://real-time-chat-app-production-06a7.up.railway.app/api/user/name`)
       .then((res) => {
         const user = res.data.find((u) => u._id === selectedUserId);
         setSelectedUserName(user ? user.name : "");
