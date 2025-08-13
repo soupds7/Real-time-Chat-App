@@ -12,7 +12,7 @@ const Login = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         
-        axios.post('http://localhost:5001/api/user/login', {email, password})
+        axios.post('https://real-time-chat-app-c45p.vercel.app/api/user/login', {email, password})
         .then(result => {
             // Expect result.data to be user object or error
             if(result.data && result.data._id){
