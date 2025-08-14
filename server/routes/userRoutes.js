@@ -42,13 +42,44 @@ router.post('/login', (req, res) => {
 
 // GET /api/user/name - fetch all user names
 router.get('/name', async (req, res) => {
-  try {
-    const users = await userModel.find({}, 'name'); // only fetch name field
-    res.status(200).json(users);
-  } catch (error) {
-    console.error("Failed to fetch names:", error);
-    res.status(500).json({ message: 'Server Error', error: error.message });
-  }
+ try {
+        const users = await userModel.find({}, 'name'); // only fetch name field
+        res.status(200).json(users);
+    } catch (error) {
+        console.error("Failed to fetch names:", error);
+        res.status(500).json({ message: 'Server Error', error: error.message });
+    }
+});
+
+// POST /api/user/add-friend - add a friend by userId
+router.post('/add-friend', async (req, res) => {
+    const { userId, friendId } = req.body;
+    if (!userId || !friendId) {
+        return res.status(400).json({ error: 'userId and friendId required' });
+    }
+    try {
+        // Add friendId to user's friends array if not already present
+        const user = await userModel.findById(userId);
+        if (!user) return res.status(404).json({ error: 'User not found' });
+        if (!user.friends.includes(friendId)) {
+            user.friends.push(friendId);
+            await user.save();
+        }
+        res.status(200).json({ message: 'Friend added', friends: user.friends });
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to add friend' });
+    }
+});
+
+// GET /api/user/friends/:userId - get all friends for a user
+router.get('/friends/:userId', async (req, res) => {
+    try {
+        const user = await userModel.findById(req.params.userId).populate('friends', 'name email');
+        if (!user) return res.status(404).json({ error: 'User not found' });
+        res.status(200).json(user.friends);
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to fetch friends' });
+    }
 });
 
 
