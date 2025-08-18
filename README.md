@@ -65,4 +65,4 @@ MIT
 
 ---
 
-Made with ❤️ by soupds7
+Made with ❤️ by Souptik
