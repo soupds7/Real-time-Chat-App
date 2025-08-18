@@ -29,15 +29,15 @@ app.use(cors({
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-}).then(() => console.log("✅ MongoDB connected"))
-  .catch(err => console.error("❌ MongoDB error:", err));
+}).then(() => console.log("MongoDB connected"))
+  .catch(err => console.error("MongoDB error:", err));
 
 app.use("/api/messages", messageRoutes);
 app.use("/api/user", userRoutes);
 
 let onlineUsers = {};
 io.on("connection", (socket) => {
-  console.log("🟢 New client connected: " + socket.id);
+  console.log("New client connected: " + socket.id);
 
   // Listen for user online event
   socket.on("user_online", (userId) => {
@@ -61,11 +61,11 @@ io.on("connection", (socket) => {
       }
     }
     io.emit("update_online", Object.keys(onlineUsers));
-    console.log("🔴 Client disconnected: " + socket.id);
+    console.log("Client disconnected: " + socket.id);
   });
 });
 
 const PORT = process.env.PORT || 5001;
 server.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
