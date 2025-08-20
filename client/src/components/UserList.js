@@ -136,7 +136,7 @@ const UserList = ({ onSelectUser, currentUserId, notifications, setNotifications
                     className="px-4 py-2 mb-1 rounded-lg cursor-pointer hover:bg-green-100 text-green-700 font-semibold border border-green-200"
                     onClick={async () => {
                       try {
-                        await axios.post('https://real-time-chat-app-c45p.vercel.app/api/user/add-friend', {
+                        await axios.post('https://real-time-chat-app-production-06a7.up.railway.app/api/user/add-friend', {
                           userId: currentUserId,
                           friendId: u._id
                         });
@@ -145,7 +145,7 @@ const UserList = ({ onSelectUser, currentUserId, notifications, setNotifications
                         setAddFriendError("");
                         setSearchTerm("");
                         // Refresh friends list
-                        const res = await axios.get(`https://real-time-chat-app-c45p.vercel.app/api/user/friends/${currentUserId}`);
+                        const res = await axios.get(`https://real-time-chat-app-production-06a7.up.railway.app/api/user/friends/${currentUserId}`);
                         setFriends(res.data);
                       } catch (err) {
                         setAddFriendError("Failed to add friend.");
