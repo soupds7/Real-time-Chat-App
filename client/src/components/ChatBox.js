@@ -131,7 +131,7 @@ const ChatBox = ({ currentUserId, selectedUserId, sidebarOpen, setSidebarOpen, t
               messages.map((msg) => (
                 <div
                   key={msg._id}
-                  className={`max-w-xs md:max-w-lg px-3 md:px-4 py-2 rounded-lg shadow text-sm md:text-base break-words ${
+                  className={`w-fit max-w-[80vw] md:max-w-md px-3 md:px-4 py-2 rounded-lg shadow text-sm md:text-base break-words ${
                     msg.sender === currentUserId
                       ? 'bg-green-500 text-white self-end ml-auto'
                       : 'bg-white text-green-900 self-start mr-auto border border-green-200'
