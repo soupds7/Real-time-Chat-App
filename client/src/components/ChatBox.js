@@ -29,7 +29,7 @@ const ChatBox = ({ currentUserId, selectedUserId, sidebarOpen, setSidebarOpen, t
       return;
     }
     axios
-      .get(`https://real-time-chat-app-c45p.vercel.app/api/messages/${currentUserId}/${selectedUserId}`)
+      .get(`https://real-time-chat-app-production-06a7.up.railway.app/api/messages/${currentUserId}/${selectedUserId}`)
       .then((res) => setMessages(res.data))
       .catch((err) => setMessages([]));
   }, [selectedUserId, currentUserId]);
