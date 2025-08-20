@@ -21,8 +21,7 @@ const io = new Server(server, {
 app.use(express.json());
 app.use(cors({
   origin: ["http://localhost:3000", "https://real-time-chat-app-tan-pi.vercel.app"],
-  methods: ["GET", "POST", "PATCH", "DELETE"],
-  allowedHeaders: ["Content-Type"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
 
