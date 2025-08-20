@@ -1,9 +1,10 @@
 const admin = require('firebase-admin');
 const userModel = require('./models/userModel');
+require('dotenv').config();
 
 // Initialize Firebase Admin SDK
 if (!admin.apps.length) {
-  const serviceAccount = require('../soup-inbox-firebase-adminsdk-fbsvc-8e960c9b31.json');
+  const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     projectId: 'soup-inbox'
