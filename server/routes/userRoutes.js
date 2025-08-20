@@ -8,8 +8,40 @@ router.use(cors({
   methods: ['GET', 'POST', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type']
 }));
-  
-  
+
+
+const { sendPushNotification } = require('../sendNotification');
+// POST /api/user/send-notification - send push notification to a user
+router.post('/send-notification', async (req, res) => {
+    const { userId, title, body } = req.body;
+    if (!userId || !title || !body) {
+        return res.status(400).json({ error: 'userId, title, and body required' });
+    }
+    try {
+        await sendPushNotification(userId, title, body);
+        res.status(200).json({ message: 'Notification sent' });
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to send notification', details: err.message });
+    }
+});
+// POST /api/user/fcm-token - save or update FCM token for a user
+router.post('/fcm-token', async (req, res) => {
+    const { userId, fcmToken } = req.body;
+    if (!userId || !fcmToken) {
+        return res.status(400).json({ error: 'userId and fcmToken required' });
+    }
+    try {
+        const user = await userModel.findById(userId);
+        if (!user) return res.status(404).json({ error: 'User not found' });
+        user.fcmToken = fcmToken;
+        await user.save();
+        res.status(200).json({ message: 'FCM token saved' });
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to save FCM token' });
+    }
+});
+
+
 router.post('/register', (req, res) => {
     const { name, email, password } = req.body;
     userModel.findOne({ email: email })
