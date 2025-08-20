@@ -33,6 +33,7 @@ function App() {
 
   useEffect(() => {
     onMessage(messaging, (payload) => {
+            console.log('Received push notification:', payload);
       alert(payload.notification.title + ': ' + payload.notification.body);
     });
   }, []);
