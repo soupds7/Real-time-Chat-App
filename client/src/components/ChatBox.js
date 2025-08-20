@@ -104,9 +104,9 @@ const ChatBox = ({ currentUserId, selectedUserId, sidebarOpen, setSidebarOpen, t
     {/* Mobile Navbar */}
       <nav className="md:hidden flex items-center justify-between bg-green-600 px-4 py-3 mb-2">
         <div className="flex items-center mb-2 md:mb-4 flex-wrap">
-        <div className="text-xl md:text-2xl font-extrabold text-gray-100">Inbox</div>
+        <div className="text-xl md:text-2xl pt-1 font-extrabold text-gray-100">Inbox</div>
         {selectedUserName && (
-          <div className="ml-2 md:ml-4 px-2 md:px-4 py-1 md:py-2 rounded-lg bg-green-100 text-green-700 font-bold text-base md:text-lg">
+          <div className="ml-2 md:ml-4 px-2 pt-1 md:px-4 py-1 md:py-2 rounded-lg bg-green-100 text-green-700 font-bold text-base md:text-lg">
             {selectedUserName}
           </div>
         )}
@@ -124,7 +124,7 @@ const ChatBox = ({ currentUserId, selectedUserId, sidebarOpen, setSidebarOpen, t
         </button>
       </nav>
       
-      <div className="flex-1 overflow-y-auto space-y-2 p2 pb-2 md:pb-4 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+      <div className="flex-1 overflow-y-auto space-y-2 py-2 pb-2 md:pb-4 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         {selectedUserId ? (
           <>
             {messages.length > 0 ? (
@@ -152,7 +152,7 @@ const ChatBox = ({ currentUserId, selectedUserId, sidebarOpen, setSidebarOpen, t
           <div className="text-green-700">Select a user to start chatting.</div>
         )}
       </div>
-      <form className="flex mt-2 gap-2 md:gap-0" onSubmit={e => { e.preventDefault(); sendMessage(); }}>
+      <form className="flex mt-2 gap-2 md:gap-0 pb-3" onSubmit={e => { e.preventDefault(); sendMessage(); }}>
         <input
           type="text"
           value={newMessage}
