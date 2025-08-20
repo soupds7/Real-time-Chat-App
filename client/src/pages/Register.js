@@ -22,8 +22,8 @@ const Register = () => {
                 navigate('/login');
             }
             else{
-                alert("Registered successfully! Please Login to proceed.")
-                navigate('/login');
+                alert("Registered successfully!")
+                navigate('/');
             }
             
         })
