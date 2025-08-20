@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import socket from '../Socket';
 
-const ChatBox = ({ currentUserId, selectedUserId }) => {
-  const [messages, setMessages] = useState([]);
+const ChatBox = ({ currentUserId, selectedUserId, sidebarOpen, setSidebarOpen, totalUnread }) => {  const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [selectedUserName, setSelectedUserName] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -101,16 +100,31 @@ const ChatBox = ({ currentUserId, selectedUserId }) => {
   }, [messages, selectedUserId]);
 
   return (
-    <div className="flex flex-col min-h-screen h-screen bg-gray-100 p-2 md:p-6">
-      <div className="flex items-center mb-2 md:mb-4 flex-wrap">
-        <div className="text-xl md:text-2xl font-extrabold text-green-700">Inbox</div>
+    <div className="flex flex-col min-h-screen h-screen bg-gray-100 md:p-6">
+    {/* Mobile Navbar */}
+      <nav className="md:hidden flex items-center justify-between bg-green-600 px-4 py-3 mb-2">
+        <div className="flex items-center mb-2 md:mb-4 flex-wrap">
+        <div className="text-xl md:text-2xl font-extrabold text-gray-100">Inbox</div>
         {selectedUserName && (
           <div className="ml-2 md:ml-4 px-2 md:px-4 py-1 md:py-2 rounded-lg bg-green-100 text-green-700 font-bold text-base md:text-lg">
             {selectedUserName}
           </div>
         )}
       </div>
-      <div className="flex-1 overflow-y-auto space-y-2 pb-2 md:pb-4 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <button
+          className="relative text-white focus:outline-none"
+          onClick={() => setSidebarOpen && setSidebarOpen(!sidebarOpen)}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
+          {totalUnread > 0 && (
+            <span className="absolute -top-1 -right-2 bg-red-600 text-white rounded-full px-2 py-0.5 text-xs font-bold">
+              {totalUnread}
+            </span>
+          )}
+        </button>
+      </nav>
+      
+      <div className="flex-1 overflow-y-auto space-y-2 p2 pb-2 md:pb-4 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         {selectedUserId ? (
           <>
             {messages.length > 0 ? (
