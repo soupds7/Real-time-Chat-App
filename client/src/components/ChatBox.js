@@ -124,7 +124,7 @@ const ChatBox = ({ currentUserId, selectedUserId, sidebarOpen, setSidebarOpen, t
         </button>
       </nav>
       
-      <div className="flex-1 overflow-y-auto space-y-2 my-2 pb-2 md:pb-4 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+      <div className="flex-1 overflow-y-auto space-y-2 mx-1 pb-2 md:pb-4 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         {selectedUserId ? (
           <>
             {messages.length > 0 ? (
@@ -152,7 +152,7 @@ const ChatBox = ({ currentUserId, selectedUserId, sidebarOpen, setSidebarOpen, t
           <div className="text-green-700">Select a user to start chatting.</div>
         )}
       </div>
-      <form className="flex my-2 mt-2 gap-2 md:gap-0 pb-3" onSubmit={e => { e.preventDefault(); sendMessage(); }}>
+      <form className="flex mb-2 mx-2 mt-2 gap-2 md:gap-0 pb-3" onSubmit={e => { e.preventDefault(); sendMessage(); }}>
         <input
           type="text"
           value={newMessage}
