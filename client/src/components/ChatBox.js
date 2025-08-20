@@ -50,7 +50,7 @@ const ChatBox = ({ currentUserId, selectedUserId, sidebarOpen, setSidebarOpen, t
     socket.emit("send_message", messageData);
     // Save to DB as before
     try {
-      await axios.post(`https://real-time-chat-app-c45p.vercel.app/api/messages/box`, messageData);
+      await axios.post(`https://real-time-chat-app-production-06a7.up.railway.app/api/messages/box`, messageData);
       setNewMessage("");
     } catch (err) {
       alert('Failed to send message.');
