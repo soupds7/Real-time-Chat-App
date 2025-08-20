@@ -19,7 +19,7 @@ async function sendPushNotification(userId, title, body) {
     },
     token: user.fcmToken,
   };
-
+  console.log('Sending push notification:', message);
   return admin.messaging().send(message);
 }
 
