@@ -15,7 +15,7 @@ const UserList = ({ onSelectUser, currentUserId, notifications, setNotifications
   // Fetch all users for add friend modal
   useEffect(() => {
     axios
-      .get('https://real-time-chat-app-c45p.vercel.app/api/user/name')
+      .get('https://real-time-chat-app-production-06a7.up.railway.app/api/user/name')
       .then((res) => setAllUsers(res.data))
       .catch((err) => console.error("Fetch error:", err));
   }, []);
@@ -24,7 +24,7 @@ const UserList = ({ onSelectUser, currentUserId, notifications, setNotifications
   useEffect(() => {
     if (!currentUserId) return;
     axios
-      .get(`https://real-time-chat-app-c45p.vercel.app/api/user/friends/${currentUserId}`)
+      .get(`https://real-time-chat-app-production-06a7.up.railway.app/api/user/friends/${currentUserId}`)
       .then((res) => setFriends(res.data))
       .catch((err) => setFriends([]));
   }, [currentUserId]);
