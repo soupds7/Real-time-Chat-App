@@ -3,8 +3,10 @@ const userModel = require('./models/userModel');
 
 // Initialize Firebase Admin SDK
 if (!admin.apps.length) {
+  const serviceAccount = require('../soup-inbox-firebase-adminsdk-fbsvc-8e960c9b31.json');
   admin.initializeApp({
-    credential: admin.credential.applicationDefault(), // Or use admin.credential.cert(serviceAccount)
+    credential: admin.credential.cert(serviceAccount),
+    projectId: 'soup-inbox'
   });
 }
 
