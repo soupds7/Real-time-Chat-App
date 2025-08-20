@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Message = require('../models/messageModel.js');
 const cors = require('cors');
+const { sendPushNotification } = require('../sendNotification');
+
 
 router.use(cors({
   origin: '*',
@@ -22,6 +24,15 @@ router.post('/box', async (req, res) => {
     const message = new Message({ sender, receiver, text });
     await message.save();
 
+
+    // Send push notification to receiver
+    try {
+      await sendPushNotification(receiver, 'New Message', text);
+    } catch (notifyErr) {
+      console.error('Push notification error:', notifyErr.message);
+    }
+
+    
     res.status(201).json(message);
   } catch (error) {
     console.error("🔥 Error in POST /box:", error);
