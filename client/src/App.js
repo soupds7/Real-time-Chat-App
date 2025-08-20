@@ -18,7 +18,7 @@ function App() {
             // Save token to backend
             const user = JSON.parse(localStorage.getItem("user"));
             if (user?._id) {
-              fetch("https://real-time-chat-app-c45p.vercel.app/api/user/fcm-token", {
+              fetch("https://real-time-chat-app-production-06a7.up.railway.app/api/user/fcm-token", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ userId: user._id, fcmToken: currentToken })
