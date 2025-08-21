@@ -27,7 +27,7 @@ router.post('/box', async (req, res) => {
 
     // Send push notification to receiver
     try {
-      await sendPushNotification(receiver, 'New Message', text);
+      await sendPushNotification(receiver, sender, text);
     } catch (notifyErr) {
       console.error('Push notification error:', notifyErr.message);
     }
