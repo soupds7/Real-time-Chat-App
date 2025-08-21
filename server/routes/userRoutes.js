@@ -13,13 +13,12 @@ router.use(cors({
 const { sendPushNotification } = require('../sendNotification');
 // POST /api/user/send-notification - send push notification to a user
 router.post('/send-notification', async (req, res) => {
-    const { userId, title, body } = req.body;
-    if (!userId || !title || !body) {
-        return res.status(400).json({ error: 'userId, title, and body required' });
+    const { userId, senderName, messageText } = req.body;
+    if (!userId || !senderName || !messageText) {
+        return res.status(400).json({ error: 'userId, senderName, and messageText required' });
     }
     try {
-        await sendPushNotification(userId, title, body);
-        console.log("Sent");
+        await sendPushNotification(userId, senderName, messageText);
         res.status(200).json({ message: 'Notification sent' });
     } catch (err) {
         res.status(500).json({ error: 'Failed to send notification', details: err.message });
