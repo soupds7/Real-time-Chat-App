@@ -51,14 +51,7 @@ const ChatBox = ({ currentUserId, selectedUserId, sidebarOpen, setSidebarOpen, t
     // Save to DB as before
     try {
       await axios.post(`https://real-time-chat-app-production-06a7.up.railway.app/api/messages/box`, messageData);
-      // Send push notification
-      const user = JSON.parse(localStorage.getItem("user"));
-      const senderName = user && user.name ? user.name : "Someone";
-      await axios.post(`https://real-time-chat-app-production-06a7.up.railway.app/api/messages/box`, {
-        userId: selectedUserId,
-        senderName,
-        messageText: newMessage
-      });
+      
       setNewMessage("");
     } catch (err) {
       alert('Failed to send message.');
