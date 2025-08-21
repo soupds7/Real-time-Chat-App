@@ -14,7 +14,7 @@ router.use(cors({
 // POST route to save message
 router.post('/box', async (req, res) => {
   try {
-    const { sender, receiver, text } = req.body;
+    const { sender, receiver, text, senderName } = req.body;
 
     // Validate
     if (!sender || !receiver || !text) {
@@ -27,7 +27,7 @@ router.post('/box', async (req, res) => {
 
     // Send push notification to receiver
     try {
-      await sendPushNotification(receiver, sender, text);
+      await sendPushNotification(receiver, senderName, text);
     } catch (notifyErr) {
       console.error('Push notification error:', notifyErr.message);
     }
