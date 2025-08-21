@@ -54,7 +54,7 @@ const ChatBox = ({ currentUserId, selectedUserId, sidebarOpen, setSidebarOpen, t
       // Send push notification
       const user = JSON.parse(localStorage.getItem("user"));
       const senderName = user && user.name ? user.name : "Someone";
-      await axios.post(`https://real-time-chat-app-production-06a7.up.railway.app/api/messages/user/send-notification`, {
+      await axios.post(`https://real-time-chat-app-production-06a7.up.railway.app/api/user/send-notification`, {
         userId: selectedUserId,
         senderName,
         messageText: newMessage
