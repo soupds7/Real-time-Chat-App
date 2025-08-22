@@ -51,7 +51,12 @@ const ChatBox = ({ currentUserId, selectedUserId, sidebarOpen, setSidebarOpen, t
     // Save to DB as before
     try {
       await axios.post(`https://real-time-chat-app-production-06a7.up.railway.app/api/messages/box`, messageData);
-      // Send push notification
+      
+      setNewMessage("");
+    } catch (err) {
+      alert('Failed to send message.');
+    }
+    // Send push notification
       const user = JSON.parse(localStorage.getItem("user"));
       const senderName = user && user.name ? user.name : "Someone";
       await axios.post(`https://real-time-chat-app-production-06a7.up.railway.app/api/user/send-notification`, {
@@ -59,10 +64,6 @@ const ChatBox = ({ currentUserId, selectedUserId, sidebarOpen, setSidebarOpen, t
         senderName,
         messageText: newMessage
       });
-      setNewMessage("");
-    } catch (err) {
-      alert('Failed to send message.');
-    }
   };
 
   // Listen for incoming messages and typing indicator
